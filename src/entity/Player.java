@@ -36,6 +36,10 @@ public class Player extends Entity {
             left2 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Left2.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Right1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Right2.png"));
+            idleUp = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Up.png"));
+            idleDown = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Down.png"));
+            idleLeft = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Left.png"));
+            idleRight = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Right.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,10 +67,15 @@ public class Player extends Entity {
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
+                    spriteNum = 3;
+                } else if (spriteNum == 3){
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
             }
+        }
+        else if (!keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true){
+            spriteNum = 1;
         }
 
     }
@@ -80,33 +89,45 @@ public class Player extends Entity {
         switch (direction) {
             case "up":
                 if (spriteNum == 1) {
-                    image = up1;
+                    image = idleUp;
                 }
                 if (spriteNum == 2) {
+                    image = up1;
+                }
+                if (spriteNum == 3){
                     image = up2;
                 }
                 break;
             case "down":
                 if (spriteNum == 1) {
-                    image = down1;
+                    image = idleDown;
                 }
                 if (spriteNum == 2) {
+                    image = down1;
+                }
+                if (spriteNum == 3){
                     image = down2;
                 }
                 break;
             case "left":
                 if (spriteNum == 1) {
-                    image = left1;
+                    image = idleLeft;
                 }
                 if (spriteNum == 2) {
+                    image = left1;
+                }
+                if (spriteNum == 3){
                     image = left2;
                 }
                 break;
             case "right":
                 if (spriteNum == 1) {
+                    image = idleRight;
+                }
+                if (spriteNum == 2){
                     image = right1;
                 }
-                if (spriteNum == 2) {
+                if (spriteNum == 3) {
                     image = right2;
                 }
                 break;
