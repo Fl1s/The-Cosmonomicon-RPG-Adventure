@@ -13,7 +13,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    int hasKey = 0;
+    public int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -117,25 +117,33 @@ public class Player extends Entity {
         if (i != 999) {
             String objectName = gp.obj[i].name;
 
-            switch (objectName){
+            switch (objectName) {
                 case "Key":
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
-                    System.out.println("Key: " + hasKey);
+                    gp.ui.showMessage("Вы подобрали ключ!");
                     break;
                 case "Door":
                     gp.playSE(3);
-                    if (hasKey > 0){
+                    if (hasKey > 0) {
                         gp.obj[i] = null;
                         hasKey--;
+                        gp.ui.showMessage("Вы открыли дверь!!");
+                    } else {
+                        gp.ui.showMessage("Вам нужен ключ!");
                     }
-            System.out.println("Key: " + hasKey);
                     break;
                 case "Boots":
                     gp.playSE(2);
                     speed += 1;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("Ускорение!!");
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSE(4);
                     break;
             }
         }
