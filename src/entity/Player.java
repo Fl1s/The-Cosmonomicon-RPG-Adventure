@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -41,24 +42,34 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
+        up1 = setup("Player_Up1");
+        up2 = setup("Player_Up2");
+        down1 = setup("Player_Down1");
+        down2 = setup("Player_Down2");
+        left1 = setup("Player_Left1");
+        left2 = setup("Player_Left2");
+        right1 = setup("Player_Right1");
+        right2 = setup("Player_Right2");
+
+        idleUp = setup("Player_Idle_Up");
+        idleDown = setup("Player_Idle_Down");
+        idleLeft = setup("Player_Idle_Left");
+        idleRight = setup("Player_Idle_Right");
+
+    }
+
+    public BufferedImage setup(String imageName) {
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Up2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/Player_Right2.png"));
-            idleUp = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Up.png"));
-            idleDown = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Down.png"));
-            idleLeft = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Left.png"));
-            idleRight = ImageIO.read(getClass().getResourceAsStream("/player/Player_Idle_Right.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return image;
     }
-
 
     public void update() {
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
@@ -201,6 +212,6 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }
