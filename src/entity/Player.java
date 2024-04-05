@@ -77,6 +77,9 @@ public class Player extends Entity {
             int obhIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(obhIndex);
 
+            //check npc collision
+            int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
+            interactNPC(npcIndex);
             //Если коллизии нет, игрок способен к движению
             if (collisionOn == false) {
                 switch (direction) {
@@ -114,6 +117,11 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != 999) {
 
+        }
+    }
+    public void interactNPC(int i){
+        if (i != 999){
+            System.out.println("You are hitting an npc!");
         }
     }
 
