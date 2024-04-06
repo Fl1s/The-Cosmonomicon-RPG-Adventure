@@ -16,9 +16,9 @@ public class NPC_Merchant extends Entity {
 
     public void getImage() {
         up1 = setup("/npc/merchant_move_up1");
-        up2 = setup("/npc/merchant_move_up2");
+        up2 = setup("/npc/merchant_idle_up");
         down1 = setup("/npc/merchant_move_down1");
-        down2 = setup("/npc/merchant_move_down2");
+        down2 = setup("/npc/merchant_idle_down");
         left1 = setup("/npc/merchant_move_left");
         left2 = setup("/npc/merchant_idle_left");
         right1 = setup("/npc/merchant_move_right");
